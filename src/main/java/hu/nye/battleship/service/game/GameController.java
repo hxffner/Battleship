@@ -26,14 +26,14 @@ public class GameController {
     public static void middleGame() {
         Board board = new Board();
         Shoot shoot = new Shoot();
+        StepController sc = new StepController();
         Board.writeBoard();
 
-        do {
-            Shoot.playerGuess();
-            Shoot.enemyGuess();
-            Board.writeBoard();
-        } while(enemyShipCount != 0 || playerShipCount != 0);
-        GameController.endGame();
+        Shoot.playerGuess();
+        Shoot.enemyGuess();
+        Board.writeBoard();
+        StepController.nextStep();
+
     }
 
     public static void endGame() {
