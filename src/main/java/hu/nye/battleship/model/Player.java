@@ -9,6 +9,5 @@ public class Player {
         Scanner sc = new Scanner(System.in);
         String playerName = sc.nextLine();
         System.out.println("Üdvözöljük, "+playerName+". Sok sikert!");
-
     }
 }
