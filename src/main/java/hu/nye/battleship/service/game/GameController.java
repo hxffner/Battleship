@@ -31,7 +31,6 @@ public class GameController {
 
         Shoot.playerGuess();
         Shoot.enemyGuess();
-        Board.writeBoard();
         StepController.nextStep();
 
     }

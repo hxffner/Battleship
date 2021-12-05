@@ -1,13 +1,20 @@
 package hu.nye.battleship.model;
 
+import hu.nye.battleship.service.database.Database;
+
 import java.util.Scanner;
 
 public class Player {
 
+    public static String playerName;
+
     public static void playerInformation() {
-        System.out.println("Kérem, adja meg a nevét!");
+        System.out.println("Kerem, adja meg a nevet!");
         Scanner sc = new Scanner(System.in);
-        String playerName = sc.nextLine();
-        System.out.println("Üdvözöljük, "+playerName+". Sok sikert!");
+        String pn = sc.nextLine();
+        playerName = pn;
+        System.out.println("Udvozoljuk, "+playerName+". Sok sikert!");
+        Database database = new Database();
+        Database.playerWin();
     }
 }
