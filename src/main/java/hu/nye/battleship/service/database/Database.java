@@ -36,7 +36,7 @@ public class Database {
         }
         catch(Exception e){ System.out.println(e);}
     }
-    }
+
 
     public static void highscore() {
         try {

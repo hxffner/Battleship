@@ -1,7 +1,5 @@
 package hu.nye.battleship.model;
 
-import hu.nye.battleship.service.database.Database;
-
 import java.util.Scanner;
 
 public class Player {
@@ -14,7 +12,5 @@ public class Player {
         String pn = sc.nextLine();
         playerName = pn;
         System.out.println("Udvozoljuk, "+playerName+". Sok sikert!");
-        Database database = new Database();
-        Database.playerWin();
     }
 }
