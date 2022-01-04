@@ -1,12 +1,14 @@
 package hu.nye.battleship.service.game;
 
 import hu.nye.battleship.service.database.Database;
+import org.springframework.stereotype.Service;
 
 import javax.xml.crypto.Data;
 
 import static hu.nye.battleship.model.Shoot.enemyShipCount;
 import static hu.nye.battleship.model.Shoot.playerShipCount;
 
+@Service
 public class StepController {
 
     public static void nextStep() {

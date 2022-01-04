@@ -1,11 +1,14 @@
 package hu.nye.battleship.model;
 
+import org.springframework.stereotype.Service;
+
 import java.util.Random;
 import java.util.Scanner;
 
 import static hu.nye.battleship.model.Board.enemyBoard;
 import static hu.nye.battleship.model.Board.playerBoard;
 
+@Service
 public class Ship {
 
     public static void playerShipsPlacement() {

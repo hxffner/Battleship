@@ -1,5 +1,8 @@
 package hu.nye.battleship.model;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class Board {
 
     private static int playerRow;

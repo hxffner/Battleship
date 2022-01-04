@@ -5,9 +5,9 @@ import hu.nye.battleship.model.Player;
 import hu.nye.battleship.model.Ship;
 import hu.nye.battleship.model.Shoot;
 
-import static hu.nye.battleship.model.Shoot.enemyShipCount;
-import static hu.nye.battleship.model.Shoot.playerShipCount;
+import org.springframework.stereotype.Service;
 
+@Service
 public class GameController {
 
 
