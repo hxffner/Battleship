@@ -12,6 +12,8 @@ public class Board {
     private static int enemyColumn;
     public static int[][] enemyBoard = new int[10][10];
 
+
+
     public static void fillBoard() {
         for (int i = 0; i < 10; i++) {
             for (int j = 0; j < 10; j++) {

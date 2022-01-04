@@ -2,7 +2,6 @@ package hu.nye.battleship.service.database;
 
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
 import java.sql.*;
 
 import static hu.nye.battleship.model.Player.playerName;

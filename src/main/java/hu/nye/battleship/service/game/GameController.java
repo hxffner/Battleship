@@ -5,7 +5,10 @@ import hu.nye.battleship.model.Player;
 import hu.nye.battleship.model.Ship;
 import hu.nye.battleship.model.Shoot;
 
+import hu.nye.battleship.service.database.Database;
 import org.springframework.stereotype.Service;
+
+import javax.xml.crypto.Data;
 
 @Service
 public class GameController {
@@ -36,7 +39,8 @@ public class GameController {
     }
 
     public static void endGame() {
-
+        Database database = new Database();
+        Database.highscore();
     }
 
 }
