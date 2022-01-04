@@ -1,21 +1,25 @@
 package hu.nye.battleship.service.database;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.sql.*;
 
 import static hu.nye.battleship.model.Player.playerName;
 
-@Service
+@Component
 public class Database {
+
+    private static Connection connection;
+
+    public Database(Connection connection) {
+        this.connection = connection;
+    }
 
     public static void playerWin() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection(
-                    "jdbc:mysql://localhost/battleship","root","");
-
-            PreparedStatement preparedStmt = con.prepareStatement("INSERT INTO player(Name,Win,Lose)" + "VALUES (?, ?, ?)");
+            PreparedStatement preparedStmt = connection.prepareStatement("INSERT INTO player(Name,Win,Lose)" + "VALUES (?, ?, ?)");
             preparedStmt.setString (1, playerName);
             preparedStmt.setInt(2,1);
             preparedStmt.setInt(3,0);
@@ -26,11 +30,9 @@ public class Database {
 
     public static void playerLose() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection(
-                    "jdbc:mysql://localhost/battleship","root","");
 
-            PreparedStatement preparedStmt = con.prepareStatement("INSERT INTO player(Name,Win,Lose)" + "VALUES (?, ?, ?)");
+
+            PreparedStatement preparedStmt = connection.prepareStatement("INSERT INTO player(Name,Win,Lose)" + "VALUES (?, ?, ?)");
             preparedStmt.setString (1, playerName);
             preparedStmt.setInt(2,0);
             preparedStmt.setInt(3,1);
@@ -42,12 +44,9 @@ public class Database {
 
     public static void highscore() {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con=DriverManager.getConnection(
-                    "jdbc:mysql://localhost/battleship","root","");
             String highscore = "SELECT *" +
                     "FROM player";
-            PreparedStatement preparedStmt = con.prepareStatement(highscore);
+            PreparedStatement preparedStmt = connection.prepareStatement(highscore);
             ResultSet rs = preparedStmt.executeQuery();
                 while (rs.next()) {
                     System.out.print(rs.getString(1));

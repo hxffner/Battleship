@@ -1,9 +1,8 @@
 package hu.nye.battleship.persistence.impl;
 
-import hu.nye.battleship.model.Board;
-import hu.nye.battleship.model.MapVO;
 import hu.nye.battleship.persistence.GameSavesRepository;
-import hu.nye.battleship.persistence.xml.PersistableMapVO;
+import hu.nye.battleship.persistence.xml.PersistableSaveGame;
+import hu.nye.battleship.service.game.SaveGame;
 import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
@@ -12,21 +11,27 @@ import jakarta.xml.bind.Unmarshaller;
 import java.io.File;
 
 public class XmlGameSavesRepository implements GameSavesRepository {
+
+    private final Marshaller marshaller;
+    private final Unmarshaller unmarshaller;
+
+    public XmlGameSavesRepository(Marshaller marshaller, Unmarshaller unmarshaller) {
+        this.marshaller = marshaller;
+        this.unmarshaller = unmarshaller;
+    }
+
+
     @Override
-    public void save(MapVO currentBoard) {
+    public void save(SaveGame currentBoard) {
 
-        JAXBContext jaxbContext = null;
+
         try {
-            jaxbContext = JAXBContext.newInstance(PersistableMapVO.class);
-
-            Marshaller marshaller = jaxbContext.createMarshaller();
-            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
-
-            PersistableMapVO persistableMapVO =
-                    new PersistableMapVO(currentBoard.getPlayerRow(), currentBoard.getPlayerColumn(), currentBoard.getEnemyRow(), currentBoard.getEnemyColumn());
+            PersistableSaveGame persistableSaveGame =
+                    new PersistableSaveGame(currentBoard.getPlayerRowSave(), currentBoard.getPlayerColumnSave(), currentBoard.getEnemyRowSave(), currentBoard.getEnemyColumnSave());
 
 
-            marshaller.marshal(currentBoard, new File("boardstate.xml"));
+
+            marshaller.marshal(persistableSaveGame, new File("boardstate.xml"));
         } catch (JAXBException e) {
             e.printStackTrace();
         }
@@ -35,14 +40,11 @@ public class XmlGameSavesRepository implements GameSavesRepository {
     }
 
     @Override
-    public MapVO load() {
+    public SaveGame load() {
         try {
-            JAXBContext jaxbContext = JAXBContext.newInstance(PersistableMapVO.class);
+            PersistableSaveGame persistableSaveGame = (PersistableSaveGame) unmarshaller.unmarshal(new File("boardstate.xml"));
 
-            Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            PersistableMapVO persistableMapVO = (PersistableMapVO) unmarshaller.unmarshal(new File("boardstate.xml"));
-
-            return new MapVO(persistableMapVO.getPlayerRow(), persistableMapVO.getPlayerColumn(), persistableMapVO.getEnemyRow(), persistableMapVO.getEnemyColumn());
+            return new SaveGame(persistableSaveGame.getPlayerRowSave(), persistableSaveGame.getPlayerColumnSave(), persistableSaveGame.getEnemyRowSave(), persistableSaveGame.getEnemyColumnSave());
         } catch (JAXBException e) {
             e.printStackTrace();
         }

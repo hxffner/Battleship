@@ -10,10 +10,11 @@ import static hu.nye.battleship.model.Board.playerBoard;
 
 @Service
 public class Shoot {
-    public static int enemyShipCount = 5;
+    public static int enemyShipCount = 1;
     public static int playerShipCount = 5;
 
     public static void playerGuess() {
+                enemyShipCount--;
                 System.out.println("Ird be az X Y koordinatakat oda ahova loni akarsz");
                 Scanner scX = new Scanner(System.in);
                 int shootX = scX.nextInt();

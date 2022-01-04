@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class Board {
 
-    private static int playerRow;
-    private static int playerColumn;
+    public static int playerRow;
+    public static int playerColumn;
     public static int[][] playerBoard = new int[10][10];
-    private static int enemyRow;
-    private static int enemyColumn;
+    public static int enemyRow;
+    public static int enemyColumn;
     public static int[][] enemyBoard = new int[10][10];
 
 

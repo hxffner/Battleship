@@ -8,8 +8,6 @@ import hu.nye.battleship.model.Shoot;
 import hu.nye.battleship.service.database.Database;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
-
 @Service
 public class GameController {
 
@@ -18,7 +16,6 @@ public class GameController {
         Player player = new Player();
         Board board = new Board();
         Ship ship = new Ship();
-
         Player.playerInformation();
         Board.fillBoard();
         Ship.playerShipsPlacement();
@@ -39,7 +36,6 @@ public class GameController {
     }
 
     public static void endGame() {
-        Database database = new Database();
         Database.highscore();
     }
 

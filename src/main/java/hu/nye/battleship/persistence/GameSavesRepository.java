@@ -1,11 +1,11 @@
 package hu.nye.battleship.persistence;
 
-import hu.nye.battleship.model.MapVO;
+import hu.nye.battleship.service.game.SaveGame;
 
 public interface GameSavesRepository {
 
-    void save(MapVO currentBoard);
+    void save(SaveGame currentBoard);
 
-    MapVO load();
+    SaveGame load();
 
 }
