@@ -8,6 +8,9 @@ import hu.nye.battleship.model.Shoot;
 import hu.nye.battleship.service.database.Database;
 import org.springframework.stereotype.Service;
 
+import static hu.nye.battleship.model.Board.enemyBoard;
+import static hu.nye.battleship.model.Board.playerBoard;
+
 @Service
 public class GameController {
 

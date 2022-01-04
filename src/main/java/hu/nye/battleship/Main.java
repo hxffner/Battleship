@@ -9,6 +9,8 @@ public class Main {
     public static void main(String[] args) {
         ApplicationContext applicationContext = new AnnotationConfigApplicationContext("hu.nye.battleship");
 
+
+
         //SaveGame saveGame = new SaveGame(1,1,1,1);
 
         //XmlGameSavesRepository xmlGameSavesRepository = new XmlGameSavesRepository(marshaller, unmarshaller);

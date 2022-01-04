@@ -10,6 +10,9 @@ import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
 
+import static hu.nye.battleship.model.Board.enemyBoard;
+import static hu.nye.battleship.model.Board.playerBoard;
+
 public class XmlGameSavesRepository implements GameSavesRepository {
 
     private final Marshaller marshaller;
@@ -23,14 +26,9 @@ public class XmlGameSavesRepository implements GameSavesRepository {
 
     @Override
     public void save(SaveGame currentBoard) {
-
-
         try {
             PersistableSaveGame persistableSaveGame =
                     new PersistableSaveGame(currentBoard.getPlayerRowSave(), currentBoard.getPlayerColumnSave(), currentBoard.getEnemyRowSave(), currentBoard.getEnemyColumnSave());
-
-
-
             marshaller.marshal(persistableSaveGame, new File("boardstate.xml"));
         } catch (JAXBException e) {
             e.printStackTrace();
@@ -43,7 +41,6 @@ public class XmlGameSavesRepository implements GameSavesRepository {
     public SaveGame load() {
         try {
             PersistableSaveGame persistableSaveGame = (PersistableSaveGame) unmarshaller.unmarshal(new File("boardstate.xml"));
-
             return new SaveGame(persistableSaveGame.getPlayerRowSave(), persistableSaveGame.getPlayerColumnSave(), persistableSaveGame.getEnemyRowSave(), persistableSaveGame.getEnemyColumnSave());
         } catch (JAXBException e) {
             e.printStackTrace();
