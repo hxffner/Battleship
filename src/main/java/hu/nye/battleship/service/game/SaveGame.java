@@ -1,7 +1,15 @@
 package hu.nye.battleship.service.game;
 
-import static hu.nye.battleship.model.Board.*;
+import static hu.nye.battleship.model.Board.enemyColumn;
+import static hu.nye.battleship.model.Board.enemyRow;
+import static hu.nye.battleship.model.Board.playerColumn;
+import static hu.nye.battleship.model.Board.playerRow;
 
+
+
+/**
+ * Saving information.
+ */
 public class SaveGame {
 
 
@@ -10,7 +18,11 @@ public class SaveGame {
     private int enemyRowSave = enemyRow;
     private int enemyColumnSave = enemyColumn;
 
-    public SaveGame(int playerRowSave, int playerColumnSave, int enemyRowSave, int enemyColumnSave) {
+    /**
+     * Saving information.
+     */
+    public SaveGame(int playerRowSave, int playerColumnSave,
+                    int enemyRowSave, int enemyColumnSave) {
         this.playerRowSave = playerRowSave;
         this.playerColumnSave = playerColumnSave;
         this.enemyRowSave = enemyRowSave;

@@ -2,9 +2,10 @@ package hu.nye.battleship.persistence.xml;
 
 import jakarta.xml.bind.annotation.XmlRootElement;
 
-import static hu.nye.battleship.model.Board.*;
-import static hu.nye.battleship.model.Board.enemyColumn;
 
+/**
+ * Exact copy of {@link SaveGame} that can be used for XML marshalling/unmarshalling.
+ */
 @XmlRootElement(name = "board_state")
 public class PersistableSaveGame {
 
@@ -16,7 +17,11 @@ public class PersistableSaveGame {
     public PersistableSaveGame() {
     }
 
-    public PersistableSaveGame(int playerRowSave, int playerColumnSave, int enemyRowSave, int enemyColumnSave) {
+    /**
+     * Exact copy of {@link SaveGame}.
+     */
+    public PersistableSaveGame(int playerRowSave, int playerColumnSave,
+                               int enemyRowSave, int enemyColumnSave) {
         this.playerRowSave = playerRowSave;
         this.playerColumnSave = playerColumnSave;
         this.enemyRowSave = enemyRowSave;

@@ -2,6 +2,9 @@ package hu.nye.battleship.model;
 
 import org.springframework.stereotype.Service;
 
+/**
+ * Board implementation.
+ */
 @Service
 public class Board {
 
@@ -12,6 +15,9 @@ public class Board {
     public static int enemyColumn;
     public static int[][] enemyBoard = new int[10][10];
 
+    /**
+     * Represents the current player and enemy board.
+     */
     public static void writeBoard() {
         System.out.print("  ");
         for (char i = 'A'; i < 10 + 65; i++) {
@@ -23,7 +29,9 @@ public class Board {
         }
         System.out.println();
 
-        for (playerRow = 0, enemyRow = 0; playerRow < 10 && enemyRow < 10; playerRow++, enemyRow++) {
+        for (playerRow = 0, enemyRow = 0;
+             playerRow < 10 && enemyRow < 10; playerRow++, enemyRow++) {
+
             System.out.print(playerRow);
             for (playerColumn = 0; playerColumn < 10; playerColumn++) {
                 if (playerBoard[playerRow][playerColumn] == 0) {
@@ -39,18 +47,14 @@ public class Board {
 
             System.out.print("     ");
             System.out.print(enemyRow);
-
-            for(enemyColumn = 0; enemyColumn < 10;enemyColumn++) {
-                if(enemyBoard[enemyRow][enemyColumn] == 0) {
+            for (enemyColumn = 0; enemyColumn < 10; enemyColumn++) {
+                if (enemyBoard[enemyRow][enemyColumn] == 0) {
                     System.out.print(" O");
-                }
-                else if(enemyBoard[enemyRow][enemyColumn] == 1) {
+                } else if (enemyBoard[enemyRow][enemyColumn] == 1) {
                     System.out.print(" O");
-                }
-                else if(enemyBoard[enemyRow][enemyColumn] == 2) {
+                } else if (enemyBoard[enemyRow][enemyColumn] == 2) {
                     System.out.print(" +");
-                }
-                else if(enemyBoard[enemyRow][enemyColumn] == 3) {
+                } else if (enemyBoard[enemyRow][enemyColumn] == 3) {
                     System.out.print(" X");
                 }
             }

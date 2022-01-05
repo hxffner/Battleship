@@ -1,17 +1,17 @@
 package hu.nye.battleship.persistence.impl;
 
+import java.io.File;
+
 import hu.nye.battleship.persistence.GameSavesRepository;
 import hu.nye.battleship.persistence.xml.PersistableSaveGame;
 import hu.nye.battleship.service.game.SaveGame;
-import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
 
-import java.io.File;
-
-import static hu.nye.battleship.model.Board.*;
-
+/**
+ * XML based implementation of {@link GameSavesRepository}.
+ */
 public class XmlGameSavesRepository implements GameSavesRepository {
 
     private final Marshaller marshaller;
@@ -27,7 +27,10 @@ public class XmlGameSavesRepository implements GameSavesRepository {
     public void save(SaveGame currentBoard) {
         try {
             PersistableSaveGame persistableSaveGame =
-                    new PersistableSaveGame(currentBoard.getPlayerRowSave(), currentBoard.getPlayerColumnSave(), currentBoard.getEnemyRowSave(), currentBoard.getEnemyColumnSave());
+                    new PersistableSaveGame(currentBoard.getPlayerRowSave(),
+                            currentBoard.getPlayerColumnSave(),
+                            currentBoard.getEnemyRowSave(),
+                            currentBoard.getEnemyColumnSave());
             marshaller.marshal(persistableSaveGame, new File("boardstate.xml"));
         } catch (JAXBException e) {
             e.printStackTrace();
@@ -37,18 +40,15 @@ public class XmlGameSavesRepository implements GameSavesRepository {
     @Override
     public SaveGame load() {
         try {
-            PersistableSaveGame persistableSaveGame = (PersistableSaveGame) unmarshaller.unmarshal(new File("boardstate.xml"));
-            return new SaveGame(persistableSaveGame.getPlayerRowSave(), persistableSaveGame.getPlayerColumnSave(), persistableSaveGame.getEnemyRowSave(), persistableSaveGame.getEnemyColumnSave());
+            PersistableSaveGame persistableSaveGame =
+                    (PersistableSaveGame) unmarshaller.unmarshal(new File("boardstate.xml"));
+            return new SaveGame(persistableSaveGame.getPlayerRowSave(),
+                    persistableSaveGame.getPlayerColumnSave(),
+                    persistableSaveGame.getEnemyRowSave(),
+                    persistableSaveGame.getEnemyColumnSave());
         } catch (JAXBException e) {
             e.printStackTrace();
         }
         throw new RuntimeException("Failed to load XML");
-    }
-
-    public void save() {
-        SaveGame saveGame = new SaveGame(playerRow,playerColumn,enemyRow,enemyColumn);
-
-        XmlGameSavesRepository xmlGameSavesRepository = new XmlGameSavesRepository(marshaller, unmarshaller);
-        xmlGameSavesRepository.save(saveGame);
     }
 }
