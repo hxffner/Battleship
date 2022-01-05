@@ -6,36 +6,27 @@ import hu.nye.battleship.model.Ship;
 import hu.nye.battleship.model.Shoot;
 
 import hu.nye.battleship.service.database.Database;
+import hu.nye.battleship.ui.RawMapPrinter;
 import org.springframework.stereotype.Service;
 
-import static hu.nye.battleship.model.Board.enemyBoard;
-import static hu.nye.battleship.model.Board.playerBoard;
 
 @Service
 public class GameController {
 
 
     public static void startGame() {
-        Player player = new Player();
-        Board board = new Board();
-        Ship ship = new Ship();
         Player.playerInformation();
-        Board.fillBoard();
+        RawMapPrinter.fillBoard();
         Ship.playerShipsPlacement();
         Ship.enemyShipsPlacement();
         GameController.middleGame();
     }
 
     public static void middleGame() {
-        Board board = new Board();
-        Shoot shoot = new Shoot();
-        StepController sc = new StepController();
         Board.writeBoard();
-
         Shoot.playerGuess();
         Shoot.enemyGuess();
         StepController.nextStep();
-
     }
 
     public static void endGame() {

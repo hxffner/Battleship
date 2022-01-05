@@ -10,8 +10,7 @@ import jakarta.xml.bind.Unmarshaller;
 
 import java.io.File;
 
-import static hu.nye.battleship.model.Board.enemyBoard;
-import static hu.nye.battleship.model.Board.playerBoard;
+import static hu.nye.battleship.model.Board.*;
 
 public class XmlGameSavesRepository implements GameSavesRepository {
 
@@ -33,8 +32,6 @@ public class XmlGameSavesRepository implements GameSavesRepository {
         } catch (JAXBException e) {
             e.printStackTrace();
         }
-
-
     }
 
     @Override
@@ -46,5 +43,12 @@ public class XmlGameSavesRepository implements GameSavesRepository {
             e.printStackTrace();
         }
         throw new RuntimeException("Failed to load XML");
+    }
+
+    public void save() {
+        SaveGame saveGame = new SaveGame(playerRow,playerColumn,enemyRow,enemyColumn);
+
+        XmlGameSavesRepository xmlGameSavesRepository = new XmlGameSavesRepository(marshaller, unmarshaller);
+        xmlGameSavesRepository.save(saveGame);
     }
 }

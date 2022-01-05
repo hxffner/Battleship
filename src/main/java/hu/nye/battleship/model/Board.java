@@ -12,17 +12,6 @@ public class Board {
     public static int enemyColumn;
     public static int[][] enemyBoard = new int[10][10];
 
-
-
-    public static void fillBoard() {
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 10; j++) {
-                playerBoard[i][j] = 0;
-                enemyBoard[i][j] = 0;
-            }
-        }
-    }
-
     public static void writeBoard() {
         System.out.print("  ");
         for (char i = 'A'; i < 10 + 65; i++) {
